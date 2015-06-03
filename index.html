@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="drugLord" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+    <div class="container" ng-controller="gameController">
+        <div class="information col-md-12">
+            <h3 class="heading">Information</h3>
+        </div>
+        
+        <div class="market col-md-4">
+            <h3 class="heading">Market</h3>
+            <div class="list-group" ng-cloak>
+                <div ng-click="selectDrug()" align="center" class="drug" ng-if="start" ng-repeat="drug in drugs"><span align="left" class="col-md-4">{{drug.name}}</span> <span align="center" class="col-md-4">{{drug.price | currency}}</span><span align="center" class="badge">{{drug.qty}}</span></div>
+            </div>
+        </div>
+        
+        <div class="action col-md-4">
+            <h3 class="heading">Action</h3>
+            <button class="btn btn-primary">Buy >></button> <br><br>
+            <button class="btn btn-primary">Sell <<</button>
+            <button class="btn btn-primary">Dump</button>
+            <button class="btn btn-primary">Places</button>
+            <button class="btn btn-primary">Info</button>
+        </div>
+        
+        <div class="pocket col-md-4">
+            <h3 class="heading">Your Pocket</h3>
+        </div>
+        
+        <div class="tomorrow col-md-4">
+            <h3 class="heading">Tomorrow</h3>
+            <button class="btn btn-primary">Stay Here</button>
+            <button class="btn btn-primary">Fly Away</button>
+        </div>
+        
+        <div class="status col-md-4">
+            <h3 class="heading">Status</h3>
+        </div>
+        
+        <div class="game col-md-4">
+            <h3 class="heading">Game</h3>
+            <button class="btn btn-success" ng-click="startNewGame()">New Game</button>
+            <button class="btn btn-danger">Quit</button>
+        </div>
+        
+    </div>
+
+    <!-- In production use:
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+    -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="gamefunc.js"></script>
+</body>
+</html>
