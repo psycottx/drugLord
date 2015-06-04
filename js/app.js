@@ -119,7 +119,37 @@ drugLord.controller('gameController',['$scope','drugCityService',function(scope,
         scope.start = true;
     };
 
+    scope.prevTarget = [];
     scope.selectedDrug = function(e) {
-        e.currentTarget.className = "list-group-item active";
+        var flag=0;
+        if(scope.prevTarget.length < 1) {
+            scope.prevTarget.push(e.currentTarget);
+            e.currentTarget.className="list-group-item active";
+        } else if(isNotPrevObj(e.currentTarget)){
+            for (var i = 0, n=scope.prevTarget.length; i < n; i++) {
+                scope.prevTarget[i].className = "list-group-item";
+            };
+            scope.prevTarget.push(e.currentTarget);
+            e.currentTarget.className = "list-group-item active";
+        } else if(!isNotPrevObj(e.currentTarget)) {
+            e.currentTarget.className = "list-group-item active";
+            for (var i = 0, n=scope.prevTarget.length; i < n; i++) {
+                if(scope.prevTarget[i] == e.currentTarget) {
+                    continue;
+                } else {
+                    scope.prevTarget[i].className = "list-group-item";
+                }
+            };
+        }
+        
     };
+
+    function isNotPrevObj(objec) {
+        for(var i=0, n = scope.prevTarget.length; i < n; i++) {
+            if(scope.prevTarget[i] == objec) {
+                return false;
+            }
+        }
+        return true;
+    }
 }]);
