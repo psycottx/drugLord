@@ -50,5 +50,3 @@ pocket.service('warehouseService',function(){
     	}
     };
 });
-
-
