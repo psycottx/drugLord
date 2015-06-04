@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var drugLord = angular.module('drugLord', ['ngRoute','warehouse']);
+var drugLord = angular.module('drugLord', ['wareHouse']);
 
 drugLord.service('drugCityService', function(){
     this.drugs = [
@@ -110,7 +110,7 @@ drugLord.service('drugCityService', function(){
     this.cities = ["Austin, USA", "Beijing, China", "Boston, USA", "Detroit, USA", "London, England", "Los Angeles, USA", "Miami, USA", "Moscow, Russia", "New York, USA", "Paris, France", "San Francisco, USA", "St. Peteresburg, Russia", "Sydney, Australia", "Toronto, Canada", "Vancouver, Canada"];
 });
 
-drugLord.controller('gameController',['$scope','drugCityService',function(scope,dcs){
+drugLord.controller('gameController',['$scope','drugCityService','warehouseService',function(scope,dcs,whs){
     scope.start = false;
     scope.drugs = dcs.drugs;
     
@@ -152,4 +152,12 @@ drugLord.controller('gameController',['$scope','drugCityService',function(scope,
         }
         return true;
     }
+
+    scope.drugName = whs.drugName;
+    scope.price = whs.price;
+    scope.quantity = whs.quantity;
+
+    scope.sellDrug = whs.sellDrug;
+
+    scope.selectedDrugWareHouse = whs.selectedDrugWareHouse;
 }]);

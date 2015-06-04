@@ -28,21 +28,24 @@
         <div class="market col-md-4">
             <h3 class="heading">Market</h3>
             <ul class="list-group" ng-cloak>
-                <li ng-click="selectedDrug($event)" align="center" class="list-group-item" ng-if="start" ng-repeat="drug in drugs"><span class="drug-name">{{drug.name}}</span> <span align="center" >{{drug.price | currency}}</span><span class="badge">{{drug.qty}}</span></li>
+                <li ng-click="selectedDrug($event)" align="center" class="list-group-item" ng-if="start" ng-repeat="drug in drugs"><span class="drug-name" align="center">{{drug.name}}</span> <span align="center">{{drug.price | currency}}</span><span class="badge">{{drug.qty}}</span></li>
             </ul>
         </div>
         
         <div class="action col-md-4">
             <h3 class="heading">Action</h3><br><br>
             <button class="btn btn-primary col-xs-5">Buy >></button>
-            <button class="btn btn-primary col-xs-5"> << Sell</button><br><br>
+            <button class="btn btn-primary col-xs-5" ng-click="sellDrug()"> << Sell</button><br><br>
             <button class="btn btn-primary col-xs-5">Dump</button><br><br>
             <button class="btn btn-primary col-xs-5">Places</button>
             <button class="btn btn-primary col-xs-5">Info</button>
         </div>
         
         <div class="pocket col-md-4">
-            <h3 class="heading">Your Pocket</h3>
+            <h3 class="heading">Your Pocket </h3>
+            <ul class="list-group" ng-cloak>
+                <li ng-click="selectedDrugWareHouse($event,drugName,price)" align="center" class="list-group-item" id ="list"><span class="drug-name" align="center">{{drugName}}</span> <span align="center" class="cost">{{price | currency}}</span><span class="badge">{{quantity}}</span></li>
+            </ul>
         </div>
         
         <div class="tomorrow col-md-4">
@@ -70,5 +73,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="js/app.js"></script>
+    <script src="modules/warehouse.js"></script>
+    
 </body>
 </html>
