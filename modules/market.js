@@ -131,93 +131,23 @@ marketMod.service('drugCityService', function(){
         mark.start = true;
         return true;
     };
-
-    mark.prevTarget = [];
+    mark.prevTarget = null;
     mark.selectedDrug = function(e,index) {
-        var flag=0;
-        if(mark.prevTarget.length < 1) {
-            mark.prevTarget.push(e.currentTarget);
-            e.currentTarget.className="list-group-item active";
-        } else if(isNotPrevObj(e.currentTarget)){
-            for (var i = 0, n=mark.prevTarget.length; i < n; i++) {
-                mark.prevTarget[i].className = "list-group-item";
-            };
-            mark.prevTarget.push(e.currentTarget);
-            e.currentTarget.className = "list-group-item active";
-        } else if(!isNotPrevObj(e.currentTarget)) {
-            e.currentTarget.className = "list-group-item active";
-            for (var i = 0, n=mark.prevTarget.length; i < n; i++) {
-                if(mark.prevTarget[i] == e.currentTarget) {
-                    continue;
-                } else {
-                    mark.prevTarget[i].className = "list-group-item";
-                }
-            };
-        }
         for(var i=0; i < mark.drugs.length; i++) {
             mark.drugs[i].selected = false;
         }
         mark.drugs[index].selected = true;
-
-        console.log(mark.drugs);
-        console.log(mark.start);
-        
-    };
-
-    function isNotPrevObj(objec) {
-        for(var i=0, n = mark.prevTarget.length; i < n; i++) {
-            if(mark.prevTarget[i] == objec) {
-                return false;
-            }
+        if(mark.prevTarget == null) {
+            e.currentTarget.className="list-group-item active";
+            mark.prevTarget = e.currentTarget;
+        } else {
+            mark.prevTarget.className="list-group-item";
+            e.currentTarget.className="list-group-item active";
+            mark.prevTarget = e.currentTarget;
         }
-        return true;
-    }
+        
+        console.log(mark.drugs);
+
+    };
 
 });
-
-/*
-marketMod.controller('marketController',['$scope','drugCityService',function(scope,dcs){
-	scope.start = false;
-    scope.drugs = dcs.drugs;
-    
-    scope.startNewGame = function() {
-        scope.start = false;
-        scope.start = true;
-    };
-
-    scope.prevTarget = [];
-    scope.selectedDrug = function(e) {
-        var flag=0;
-        if(scope.prevTarget.length < 1) {
-            scope.prevTarget.push(e.currentTarget);
-            e.currentTarget.className="list-group-item active";
-        } else if(isNotPrevObj(e.currentTarget)){
-            for (var i = 0, n=scope.prevTarget.length; i < n; i++) {
-                scope.prevTarget[i].className = "list-group-item";
-            };
-            scope.prevTarget.push(e.currentTarget);
-            e.currentTarget.className = "list-group-item active";
-        } else if(!isNotPrevObj(e.currentTarget)) {
-            e.currentTarget.className = "list-group-item active";
-            for (var i = 0, n=scope.prevTarget.length; i < n; i++) {
-                if(scope.prevTarget[i] == e.currentTarget) {
-                    continue;
-                } else {
-                    scope.prevTarget[i].className = "list-group-item";
-                }
-            };
-        }
-        
-    };
-
-    function isNotPrevObj(objec) {
-        for(var i=0, n = scope.prevTarget.length; i < n; i++) {
-            if(scope.prevTarget[i] == objec) {
-                return false;
-            }
-        }
-        return true;
-    }
-}]);
-
-*/
