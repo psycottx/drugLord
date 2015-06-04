@@ -28,7 +28,7 @@
         <div class="market col-md-4">
             <h3 class="heading">Market</h3>
             <ul class="list-group" ng-cloak>
-                <li ng-click="selectedDrug" align="center" class="list-group-item" ng-if="start" ng-repeat="drug in drugs"><span class="drug-name">{{drug.name}}</span> <span align="center" >{{drug.price | currency}}</span><span class="badge">{{drug.qty}}</span></li>
+                <li ng-click="selectedDrug($event)" align="center" class="list-group-item" ng-if="start" ng-repeat="drug in drugs"><span class="drug-name">{{drug.name}}</span> <span align="center" >{{drug.price | currency}}</span><span class="badge">{{drug.qty}}</span></li>
             </ul>
         </div>
         

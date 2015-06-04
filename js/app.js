@@ -119,8 +119,7 @@ drugLord.controller('gameController',['$scope','drugCityService',function(scope,
         scope.start = true;
     };
 
-    scope.listClick = $(".list-item-group").click(function(){ 
-        $(this).addClass('active'); 
-        $(this).removeClass('active'); 
-    });
+    scope.selectedDrug = function(e) {
+        e.currentTarget.className = "list-group-item active";
+    };
 }]);
