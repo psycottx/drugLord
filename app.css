@@ -90,10 +90,10 @@ html, body {
 .drug {
     height:25px;
     margin: 0px auto;
-    border: 1px solid grey;
-    border-radius: 3px;
-    list-style: none;
-    border-bottom: none;
+}
+
+.drug-name {
+    float:left;
 }
 
 .heading {

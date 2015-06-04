@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
+    <title>Drug Lord</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
@@ -27,18 +27,18 @@
         
         <div class="market col-md-4">
             <h3 class="heading">Market</h3>
-            <div class="list-group" ng-cloak>
-                <div ng-click="selectDrug()" align="center" class="drug" ng-if="start" ng-repeat="drug in drugs"><span align="left" class="col-md-4">{{drug.name}}</span> <span align="center" class="col-md-4">{{drug.price | currency}}</span><span align="center" class="badge">{{drug.qty}}</span></div>
-            </div>
+            <ul class="list-group" ng-cloak>
+                <li ng-click="selectedDrug" align="center" class="list-group-item" ng-if="start" ng-repeat="drug in drugs"><span class="drug-name">{{drug.name}}</span> <span align="center" >{{drug.price | currency}}</span><span class="badge">{{drug.qty}}</span></li>
+            </ul>
         </div>
         
         <div class="action col-md-4">
-            <h3 class="heading">Action</h3>
-            <button class="btn btn-primary">Buy >></button> <br><br>
-            <button class="btn btn-primary">Sell <<</button>
-            <button class="btn btn-primary">Dump</button>
-            <button class="btn btn-primary">Places</button>
-            <button class="btn btn-primary">Info</button>
+            <h3 class="heading">Action</h3><br><br>
+            <button class="btn btn-primary col-xs-5">Buy >></button>
+            <button class="btn btn-primary col-xs-5"> << Sell</button><br><br>
+            <button class="btn btn-primary col-xs-5">Dump</button><br><br>
+            <button class="btn btn-primary col-xs-5">Places</button>
+            <button class="btn btn-primary col-xs-5">Info</button>
         </div>
         
         <div class="pocket col-md-4">
@@ -66,10 +66,9 @@
     <!-- In production use:
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
     -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="app.js"></script>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="gamefunc.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
