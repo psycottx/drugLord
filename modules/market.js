@@ -128,11 +128,12 @@ marketMod.service('drugCityService', function(){
     mark.start = false;
     
     mark.startNewGame = function() {
+        mark.start = true;
         return true;
     };
 
     mark.prevTarget = [];
-    mark.selectedDrug = function(e) {
+    mark.selectedDrug = function(e,index) {
         var flag=0;
         if(mark.prevTarget.length < 1) {
             mark.prevTarget.push(e.currentTarget);
@@ -153,6 +154,13 @@ marketMod.service('drugCityService', function(){
                 }
             };
         }
+        for(var i=0; i < mark.drugs.length; i++) {
+            mark.drugs[i].selected = false;
+        }
+        mark.drugs[index].selected = true;
+
+        console.log(mark.drugs);
+        console.log(mark.start);
         
     };
 
