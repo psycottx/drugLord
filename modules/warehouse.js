@@ -1,1 +1,1 @@
-var warehouse = angular.module('warehouse');
+angular.module('warehouse',[]);

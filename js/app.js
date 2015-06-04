@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var drugLord = angular.module('drugLord', ['ngRoute']);
+var drugLord = angular.module('drugLord', ['ngRoute','warehouse']);
 
 drugLord.service('drugCityService', function(){
     this.drugs = [
