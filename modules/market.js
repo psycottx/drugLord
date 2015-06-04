@@ -1,125 +1,125 @@
 'use strict';
-var marketMod = angular.module('market',[]);
+var marketMod = angular.module('market',['randomMod']);
 
-marketMod.service('drugCityService', function(){
+marketMod.service('drugCityService',['randomService', function(rS){
     var mark = this;
     mark.drugs = [
         {
             name:"Cocaine",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(10000)),
             selected : false
         },
         
         {
             name:"Crack",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(10000)),
             selected : false
         },
         
         {
             name:"Ecstacy",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(10000)),
             selected : false
         },
         
         {
             name:"Hashish",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(10000)),
             selected : false
         },
         
         {
             name:"Heroin",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(10000)),
             selected : false
         },
         
         {
             name:"Ice",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"KAT",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"LSD",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"MDA",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"Morphine",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"Mushrooms",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"Opium",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"PCP",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"Peyote",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"Pot",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"Special K",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         },
         
         {
             name:"Speed",
-            qty : 0,
-            price: 0,
+            qty : Math.round(rS.randomPrice(10)),
+            price: Math.round(rS.randomPrice(1000)),
             selected : false
         }
     ];
@@ -150,4 +150,4 @@ marketMod.service('drugCityService', function(){
 
     };
 
-});
+}]);
