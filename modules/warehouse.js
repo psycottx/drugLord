@@ -1,6 +1,6 @@
 'use strict';
 var pocket=angular.module('wareHouse',[]);
-pocket.service('warehouseService',function(){
+pocket.service('warehouseService',['drugCityService',function(dcs){
 	var scope = this;
 	scope.drugName='cocaine';
 	scope.price='1000';
@@ -49,4 +49,4 @@ pocket.service('warehouseService',function(){
     		}
     	}
     };
-});
+}]);

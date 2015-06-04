@@ -11,6 +11,8 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
     scope.selectedDrug = dcs.selectedDrug;
     console.log(scope.selectedDrug);
     scope.sellDrug=whs.sellDrug;
-    scope.selectedDrug=whs.selectedDrug;
-    scope.drugName=whs.
+    scope.selectedDrugWareHouse=whs.selectedDrugWareHouse;
+    scope.drugName=whs.drugName;
+    scope.price=whs.price;
+    scope.quantity=whs.quantity;
 }]);
