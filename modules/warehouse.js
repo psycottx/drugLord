@@ -24,10 +24,3 @@ pocket.service('warehouseService',function(){
     };
     
 });
-pocket.controller('refresh_pocket',function($scope,$interval,warehouseService){
-     $scope.whdrugs=[];
-     $scope.whdrugs=warehouseService.whdrugs;
-    $interval(function(){
-     console.log("refresh",warehouseService.whdrugs);
-    },100);
-});

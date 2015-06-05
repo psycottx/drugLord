@@ -37,15 +37,15 @@
             <h3 class="heading">Action</h3><br><br>
             <button class="btn btn-primary col-xs-5" ng-click="buyDrug()">Buy >></button>
             <button class="btn btn-primary col-xs-5" ng-click="sellDrug()"> << Sell</button><br><br>
-            <button class="btn btn-primary col-xs-5">Dump</button><br><br>
+            <button class="btn btn-primary col-xs-5" ng-click="dumpDrug()">Dump</button><br><br>
             <button class="btn btn-primary col-xs-5">Places</button>
             <button class="btn btn-primary col-xs-5">Info</button>
         </div>
         
-        <div class="pocket col-md-4" ng-controller="refresh_pocket">
+        <div class="pocket col-md-4">
             <h3 class="heading">Your Pocket </h3>
             <ul class="list-group">
-                <li ng-click="selectedDrugWareHouse($event,$indexs)" align="center" class="list-group-item" ng-if="start" ng-repeat="whdrug in whdrugs track by $index">
+                <li ng-click="selectedDrugWareHouse($event,$index)" align="center" class="list-group-item" ng-if="start" ng-repeat="whdrug in whdrugs track by $index">
                     <span class="drug-name" align="center">{{whdrug.name}}</span> 
                     <span align="center" class="cost">{{whdrug.price | currency}}</span>
                     <span class="badge">{{whdrug.qty}}</span>

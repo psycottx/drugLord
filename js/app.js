@@ -5,15 +5,17 @@
 var drugLord = angular.module('drugLord', ['ngRoute','market','wareHouse','action']);
 
 drugLord.controller('gameController',['$scope','drugCityService','warehouseService','actionService',function(scope,dcs,whs,acs){
+    // market service
     scope.start = dcs.start;
     scope.startNewGame = dcs.startNewGame;
     scope.drugs = dcs.drugs;
     scope.selectedDrug = dcs.selectedDrug;
     console.log(scope.selectedDrug);
-    scope.sellDrug=acs.sellDrug;
+    // warehouse service
     scope.selectedDrugWareHouse=whs.selectedDrugWareHouse;
-    scope.drugName=whs.drugName;
-    scope.price=whs.price;
-    scope.quantity=whs.quantity;
+    scope.whdrugs=whs.whdrugs;
+    // action service
     scope.buyDrug=acs.buyDrug;
+    scope.sellDrug=acs.sellDrug;
+    scope.dumpDrug=acs.dumpDrug;
 }]);
