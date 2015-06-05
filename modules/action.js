@@ -2,8 +2,6 @@
 var action=angular.module('action',['wareHouse','market']);
 action.service('actionService',['drugCityService','warehouseService',function(dcs,whs){
 var acScope=this;
-acScope.drugs=dcs.drugs;
-acScope.whdrugs=whs.whdrugs;
 acScope.sellDrug = function(){
  console.log("sell drugs");
 
@@ -12,6 +10,8 @@ acScope.sellDrug = function(){
 };
 
 acScope.buyDrug = function(){
+acScope.drugs=dcs.drugs;
+acScope.whdrugs=whs.whdrugs;
 for(var i=0;i < acScope.drugs.length;i++)
 {
 	console.log('inside buy');
@@ -32,6 +32,8 @@ for(var i=0;i < acScope.drugs.length;i++)
 
 };
 acScope.dumpDrug=function(){
+  acScope.drugs=dcs.drugs;
+  acScope.whdrugs=whs.whdrugs;
   //console.log("inside dumpDrug");
   for(var i=0;i < acScope.whdrugs.length;i++){
         // console.log(acScope.whdrugs[i]);
