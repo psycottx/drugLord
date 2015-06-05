@@ -10,12 +10,14 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
     //$scope.start = dcs.initMarket();
     //$scope.drugs = dcs.drugs;
     //console.log($scope.drugs);
+    $scope.newGameBtn = true;
 
     $scope.startNewGame = function() {
         $scope.start = dcs.initMarket();
         $scope.drugs = dcs.drugs;
         console.log(dcs.drugs);
         console.log($scope);
+        $scope.newGameBtn = false;
     };
     console.log($scope);
     
