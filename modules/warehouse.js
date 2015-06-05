@@ -23,4 +23,7 @@ pocket.service('warehouseService',function(){
       //  console.log(mark.drugs);
     };
     
+
 });
+
+
