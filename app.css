@@ -73,14 +73,15 @@ html, body {
 }
 
 .pocket {
-    height:247px;
+    height:217px;
     width: 33%;
     border: 1px solid grey;
     float: right;
 }
 
 .status {
-    height: 247px;
+    top : -22px;
+    height: 277px;
     width: 33%;
     border: 1px solid grey;
     border-radius: 3px;
