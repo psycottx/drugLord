@@ -61,9 +61,15 @@
         
         <div class="status col-md-4">
             <h3 class="heading">Status</h3>
-            <div class="input-group">{{playerCash}}</div>
-            <div class="input-group">{{bankCash}}</div>
-            <div class="input-group">{{debtCash}}</div>
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <input class="form-control" type="text" placeholder={{playerName}} disabled>
+                </div>
+                <div class="col-sm-7">
+                    <label class="col-sm-4">Cash</label>
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerName}} disabled>
+                </div>
+            </div>
         </div>
         
         <div class="game col-md-4">
@@ -84,5 +90,6 @@
     <script src="modules/random.js"></script>
     <script src="modules/market.js"></script>
     <script src="modules/action.js"></script>
+    <script src="modules/player.js"></script>
 </body>
 </html>

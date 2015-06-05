@@ -148,16 +148,9 @@ marketMod.service('drugCityService',['randomService','$log', function(rS,$log){
             }
             mark.indexes.push(j);
         }
+        mark.indexes.sort();
         for(var i=0; i < mark.size; i++) {
             mark.drugs.push(mark.drugs1[mark.indexes[i]]);
-        }
-        mark.drugs.sort(compare);
-        function compare(a,b) {
-            if (a.name < b.name)
-                return -1;
-            if (a.name > b.name)
-                return 1;
-            return 0;
         }
         console.log(mark.indexes);
         return true;

@@ -2,17 +2,17 @@
 
 // Declare app level module which depends on views, and components
 
-var drugLord = angular.module('drugLord', ['ngRoute','market','wareHouse','action']);
+var drugLord = angular.module('drugLord', ['ngRoute','market','wareHouse','action','player']);
 
-drugLord.controller('gameController',['$scope','drugCityService','warehouseService','actionService',function($scope,dcs,whs,acs){
+drugLord.controller('gameController',['$scope','drugCityService','warehouseService','actionService','playerService',function($scope,dcs,whs,acs,play){
     
-    //drugCityService
-    //$scope.start = dcs.initMarket();
-    //$scope.drugs = dcs.drugs;
-    //console.log($scope.drugs);
     $scope.newGameBtn = true;
 
+    //drugCity Service
     $scope.startNewGame = function() {
+
+        play.init();
+        setupPlayer();
         $scope.start = dcs.initMarket();
         $scope.drugs = dcs.drugs;
         console.log(dcs.drugs);
@@ -30,10 +30,16 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
     $scope.dumpDrug = acs.dumpDrug;
     
 
-    //warehouseService
+    //warehouse Service
     $scope.selectedDrugWareHouse=whs.selectedDrugWareHouse;
     $scope.drugName=whs.drugName;
     $scope.price=whs.price;
     $scope.quantity=whs.quantity;
     $scope.whdrugs = whs.whdrugs;
+
+
+    //playerService
+    function setupPlayer() {
+        $scope.playerName = play.name;
+    }
 }]);
