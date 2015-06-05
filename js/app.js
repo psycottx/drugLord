@@ -41,5 +41,14 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
     //playerService
     function setupPlayer() {
         $scope.playerName = play.name;
+        $scope.playerCash = play.cash;
+        $scope.playerBank = play.bank;
+        $scope.playerDebt = play.debt;
+        $scope.playerHealth = play.health;
+        $scope.playerRank = play.rank;
+        $scope.playerDays = play.days;
     }
+
+    //pocketSize 
+    $scope.pocketSize = play.pocket;
 }]);

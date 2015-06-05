@@ -23,18 +23,18 @@
 
     <div class="container">
         <div class="information col-md-12">
-            <h3 class="heading">Information</h3>
+            <h4 class="heading">Information</h4>
         </div>
         
         <div class="market col-md-4">
-            <h3 class="heading">Market</h3>
+            <h4 class="heading">Market</h4>
             <ul class="list-group" ng-cloak>
                 <li ng-click="selectedDrug($event,$index)" align="center" class="list-group-item" ng-show="start" ng-repeat="drug in drugs track by $index"><span class="drug-name">{{drug.name}}</span> <span align="center" >{{drug.price | currency}}</span><span class="badge">{{drug.qty}}</span></li>
             </ul>
         </div>
         
         <div class="action col-md-4">
-            <h3 class="heading">Action</h3><br><br>
+            <h4 class="heading">Action</h4><br><br>
             <button class="btn btn-primary col-xs-5" ng-click="buyDrug()">Buy >></button>
             <button class="btn btn-primary col-xs-5" ng-click="sellDrug()"> << Sell</button><br><br>
             <button class="btn btn-primary col-xs-5" ng-click="dumpDrug()">Dump</button><br><br>
@@ -43,7 +43,7 @@
         </div>
         
         <div class="pocket col-md-4">
-            <h3 class="heading">Your Pocket </h3>
+            <h4 class="heading">Your Pocket {{pocketSize}}</h4>
             <ul class="list-group">
                 <li ng-click="selectedDrugWareHouse($event,$index)" align="center" class="list-group-item" ng-if="start" ng-repeat="whdrug in whdrugs track by $index">
                     <span class="drug-name" align="center">{{whdrug.name}}</span> 
@@ -54,26 +54,47 @@
         </div>
         
         <div class="tomorrow col-md-4">
-            <h3 class="heading">Tomorrow</h3>
+            <h4 class="heading">Tomorrow</h4><br><br>
             <button class="btn btn-primary">Stay Here</button>
             <button class="btn btn-primary">Fly Away</button>
         </div>
         
         <div class="status col-md-4">
-            <h3 class="heading">Status</h3>
+            <h4 class="heading">Status</h4>
             <div class="form-group">
                 <div class="col-sm-5">
-                    <input class="form-control" type="text" placeholder={{playerName}} disabled>
+                    <label class="col-sm-4">Name</label>
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerName}} disabled>
                 </div>
                 <div class="col-sm-7">
                     <label class="col-sm-4">Cash</label>
-                    <input class="form-control col-sm-8" type="text" placeholder={{playerName}} disabled>
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerCash|currency}} disabled>
+                </div>
+                <div class="col-sm-6">
+                    <label class="col-sm-4">Bank</label>
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerBank|currency}} disabled>
+                </div>
+                <div class="col-sm-6">
+                    <label class="col-sm-4">Debt</label>
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerDebt|currency}} disabled>
+                </div>
+                <div class="col-sm-6">
+                    <label class="col-sm-4">Health</label>
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerHealth}} disabled>
+                </div>
+                <div class="col-sm-6">
+                    <label class="col-sm-4">Rank</label>
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerRank}} disabled>
+                </div>
+                <div class="col-sm-6">
+                    <label class="col-sm-4">Days</label>
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerDays}} disabled>
                 </div>
             </div>
         </div>
         
         <div class="game col-md-4">
-            <h3 class="heading">Game</h3>
+            <h4 class="heading">Game</h4>
             <button class="btn btn-success" ng-show="newGameBtn" ng-click="startNewGame()">New Game</button>
             <button class="btn btn-danger">Quit</button>
         </div>
