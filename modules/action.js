@@ -17,7 +17,7 @@ acScope.sellDrug = function(){
                    {
                        var temp=null,
                        tqty=acScope.drugs[j].qty;
-                       temp=window.prompt("You want to sell "+acScope.whdrugs[i].name+ "in the price of "+acScope.whdrugs[i].price+" ."+" \nYou Have availabe quantity is "+acScope.whdrugs[i].qty+" Enter quantity you want to sell");
+                       temp=parseInt(window.prompt("You want to sell "+acScope.whdrugs[i].name+ "in the price of "+acScope.whdrugs[i].price+" ."+" \nYou Have availabe quantity is "+acScope.whdrugs[i].qty+" Enter quantity you want to sell"));
                        if(temp == acScope.whdrugs[i].qty)
                        {
                             acScope.whdrugs.splice(i,1);
