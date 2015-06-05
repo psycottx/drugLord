@@ -1,7 +1,11 @@
 'use strict';
 var action=angular.module('action',['wareHouse','market']);
+
 action.service('actionService',['drugCityService','warehouseService',function(dcs,whs){
 var acScope=this;
+acScope.drugs=dcs.drugs;
+acScope.whdrugs=whs.whdrugs;
+
 acScope.sellDrug = function(){
  console.log("sell drugs");
 
@@ -9,10 +13,7 @@ acScope.sellDrug = function(){
 };
 
 acScope.buyDrug = function(){
-console.log("Buy drugs");
-acScope.drugs=dcs.drugs;
-acScope.whdrugs=whs.whdrugs;
-console.log(acScope.drugs);
+
 for(var i=0;i < acScope.drugs.length;i++)
 {
 	console.log('inside for');

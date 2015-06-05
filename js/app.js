@@ -14,7 +14,7 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
     $scope.startNewGame = function() {
         $scope.start = dcs.initMarket();
         $scope.drugs = dcs.drugs;
-        console.log($scope.drugs);
+        console.log(dcs.drugs);
         console.log($scope);
     };
     console.log($scope);

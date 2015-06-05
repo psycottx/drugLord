@@ -134,7 +134,6 @@ marketMod.service('drugCityService',['randomService','$log', function(rS,$log){
         mark.drugs = mark.initDrugs();
         return true;
     };
-    
     mark.prevTarget = null;
     mark.selectedDrug = function(e,index) {
         for(var i=0; i < mark.drugs.length; i++) {
