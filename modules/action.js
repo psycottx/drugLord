@@ -4,9 +4,40 @@ var action=angular.module('action',['wareHouse','market']);
 action.service('actionService',['drugCityService','warehouseService',function(dcs,whs){
 var acScope=this;
 acScope.sellDrug = function(){
- console.log("sell drugs");
+       console.log("sell drugs");
+       acScope.drugs=dcs.drugs;
+       acScope.whdrugs=whs.whdrugs; 
+       for(var i=0; i < acScope.whdrugs.length; i++ )
+       {
+            if(acScope.whdrugs[i].selected == true)
+            {
+              for(var j=0; j < acScope.drugs.length; j++)
+              {
+                   if(acScope.whdrugs[i].name == acScope.drugs[j].name)
+                   {
+                       var temp=null,
+                       tqty=acScope.drugs[j].qty;
+                       temp=window.prompt("You want to sell "+acScope.whdrugs[i].name+ "in the price of "+acScope.whdrugs[i].price+" ."+" \nYou Have availabe quantity is "+acScope.whdrugs[i].qty+" Enter quantity you want to sell");
+                       if(temp == acScope.whdrugs[i].qty)
+                       {
+                            acScope.whdrugs.splice(i,1);
+                            acScope.drugs[j].qty= tqty + temp ;
+                       }
+                       else if(temp < acScope.whdrugs[i].qty)
+                       {
+                            acScope.whdrugs[i].qty=acScope.whdrugs[i].qty - temp;
+                            acScope.drugs[j].qty= tqty + temp ;
+                       }
+                       else if(temp > acScope.whdrugs[i].qty)
+                       {
+                            window.alert("You have only "+acScope.whdrugs[i].qty+"\n Enter valid quantity");
+                       }
+                   }
 
+              }
+            }
 
+       }
 };
 
 acScope.buyDrug = function(){
