@@ -9,6 +9,7 @@ pocket.service('warehouseService',['drugCityService',function(dcs){
 	scope.sellPrice='';
 	scope.sellquantity='';
 	scope.wareHouseSize=10;
+    scope.drugs = dcs.drugs;
 
 	scope.prevTarget = [];
     scope.selectedDrugWareHouse = function(e,d,p) {
