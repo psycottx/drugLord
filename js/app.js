@@ -4,16 +4,33 @@
 
 var drugLord = angular.module('drugLord', ['ngRoute','market','wareHouse','action']);
 
-drugLord.controller('gameController',['$scope','drugCityService','warehouseService','actionService',function(scope,dcs,whs,acs){
-    scope.start = dcs.start;
-    scope.startNewGame = dcs.startNewGame;
-    scope.drugs = dcs.drugs;
-    scope.selectedDrug = dcs.selectedDrug;
-    console.log(scope.selectedDrug);
-    scope.sellDrug=acs.sellDrug;
-    scope.selectedDrugWareHouse=whs.selectedDrugWareHouse;
-    scope.drugName=whs.drugName;
-    scope.price=whs.price;
-    scope.quantity=whs.quantity;
-    scope.buyDrug=acs.buyDrug;
+drugLord.controller('gameController',['$scope','drugCityService','warehouseService','actionService',function($scope,dcs,whs,acs){
+    
+    //drugCityService
+    //$scope.start = dcs.initMarket();
+    //$scope.drugs = dcs.drugs;
+    //console.log($scope.drugs);
+
+    $scope.startNewGame = function() {
+        $scope.start = dcs.initMarket();
+        $scope.drugs = dcs.drugs;
+        console.log($scope.drugs);
+        console.log($scope);
+    };
+    console.log($scope);
+    
+    $scope.selectedDrug = dcs.selectedDrug;
+
+
+    //action service
+    $scope.sellDrug=acs.sellDrug;
+    $scope.buyDrug=acs.buyDrug;
+    
+
+    //warehouseService
+    $scope.selectedDrugWareHouse=whs.selectedDrugWareHouse;
+    $scope.drugName=whs.drugName;
+    $scope.price=whs.price;
+    $scope.quantity=whs.quantity;
+    $scope.whdrugs = whs.whdrugs;
 }]);

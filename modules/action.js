@@ -23,18 +23,19 @@ for(var i=0;i < acScope.drugs.length;i++)
      	  console.log('inside if');
           console.log(acScope.drugs[i]);
            temp=window.prompt("You want to buy "+acScope.drugs[i].name+" price of $"+acScope.drugs[i].price+" availabe quantity is "+acScope.drugs[i].qty +"\n enter the quantity you want to buy");
-           if(temp <= acScope.drugs[i].qty && temp!=null)
+           if(temp!=null && temp <= acScope.drugs[i].qty)
            {
            	  var quantity = acScope.drugs[i].qty;
            	  console.log(quantity);
            	  console.log(temp);
               acScope.drugs[i].selected=false;
-              acScope.drugs[i].qty = temp;
               console.log(acScope.drugs[i].qty);
-           	  acScope.whdrugs.push(acScope.drugs[i]);
+           	  acScope.whdrugs.push({name :acScope.drugs[i].name, qty:temp, price: acScope.drugs[i].price, selected : false});
            	  
               console.log(whs.whdrugs);
               acScope.drugs[i].qty=(quantity-temp);
+            } else if(temp!=null &&  temp> acScope.drugs[i].qty) {
+              window.alert("Please specify values within range!");
             }
           break;
      }

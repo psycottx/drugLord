@@ -16,12 +16,12 @@
     <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="bower_components/jquery-2.1.4.min/index.js"></script>
 </head>
-<body>
+<body  ng-controller="gameController">
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-    <div class="container" ng-controller="gameController">
+    <div class="container">
         <div class="information col-md-12">
             <h3 class="heading">Information</h3>
         </div>
@@ -29,7 +29,7 @@
         <div class="market col-md-4">
             <h3 class="heading">Market</h3>
             <ul class="list-group" ng-cloak>
-                <li ng-click="selectedDrug($event,$index)" align="center" class="list-group-item" ng-if="start" ng-repeat="drug in drugs track by $index"><span class="drug-name">{{drug.name}}</span> <span align="center" >{{drug.price | currency}}</span><span class="badge">{{drug.qty}}</span></li>
+                <li ng-click="selectedDrug($event,$index)" align="center" class="list-group-item" ng-show="start" ng-repeat="drug in drugs track by $index"><span class="drug-name">{{drug.name}}</span> <span align="center" >{{drug.price | currency}}</span><span class="badge">{{drug.qty}}</span></li>
             </ul>
         </div>
         
@@ -42,10 +42,10 @@
             <button class="btn btn-primary col-xs-5">Info</button>
         </div>
         
-        <div class="pocket col-md-4" ng-controller="refresh_pocket">
+        <div class="pocket col-md-4">
             <h3 class="heading">Your Pocket </h3>
             <ul class="list-group">
-                <li ng-click="selectedDrugWareHouse($event,$indexs)" align="center" class="list-group-item" ng-if="start" ng-repeat="whdrug in whdrugs track by $index">
+                <li ng-click="selectedDrugWareHouse($event,$index)" align="center" class="list-group-item" ng-if="start" ng-repeat="whdrug in whdrugs track by $index">
                     <span class="drug-name" align="center">{{whdrug.name}}</span> 
                     <span align="center" class="cost">{{whdrug.price | currency}}</span>
                     <span class="badge">{{whdrug.qty}}</span>
@@ -61,12 +61,16 @@
         
         <div class="status col-md-4">
             <h3 class="heading">Status</h3>
+            <div class="input-group">{{playerCash}}</div>
+            <div class="input-group">{{bankCash}}</div>
+            <div class="input-group">{{debtCash}}</div>
         </div>
         
         <div class="game col-md-4">
             <h3 class="heading">Game</h3>
-            <button class="btn btn-success" ng-click="start = startNewGame()">New Game</button>
+            <button class="btn btn-success" ng-click="startNewGame()">New Game</button>
             <button class="btn btn-danger">Quit</button>
+            {{start}}
         </div>
         
     </div>

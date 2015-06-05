@@ -4,7 +4,6 @@ pocket.service('warehouseService',function(){
 	var scope = this;
     scope.whdrugs = [];
 	scope.wareHouseSize=10;
-    scope.drugs = dcs.drugs;
 
 	scope.prevTarget = null;
     scope.selectedDrugWareHouse = function(e,index) {
@@ -24,11 +23,4 @@ pocket.service('warehouseService',function(){
       //  console.log(mark.drugs);
     };
     
-});
-pocket.controller('refresh_pocket',function($scope,$interval,warehouseService){
-     $scope.whdrugs=[];
-     $scope.whdrugs=warehouseService.whdrugs;
-    $interval(function(){
-     console.log("refresh",warehouseService.whdrugs);
-    },100);
 });
