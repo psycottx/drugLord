@@ -25,6 +25,7 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
     //action service
     $scope.sellDrug=acs.sellDrug;
     $scope.buyDrug=acs.buyDrug;
+    $scope.dumpDrug = acs.dumpDrug;
     
 
     //warehouseService
