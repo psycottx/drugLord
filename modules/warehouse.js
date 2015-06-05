@@ -1,53 +1,34 @@
 'use strict';
 var pocket=angular.module('wareHouse',[]);
-pocket.service('warehouseService',['drugCityService',function(dcs){
+pocket.service('warehouseService',function(){
 	var scope = this;
-	scope.drugName='cocaine';
-	scope.price='1000';
-	scope.quantity='5';
-	scope.sellDrugName= null;
-	scope.sellPrice='';
-	scope.sellquantity='';
+    scope.whdrugs = [];
 	scope.wareHouseSize=10;
     scope.drugs = dcs.drugs;
 
-	scope.prevTarget = [];
-    scope.selectedDrugWareHouse = function(e,d,p) {
-        console.log(e,d,p);
-        scope.sellDrugName = d;
-        console.log(e.currentTarget );
-        scope.sellPrice=p;
-        if(scope.prevTarget.length < 1) {
-            scope.prevTarget.push(e.currentTarget);
+	scope.prevTarget = null;
+    scope.selectedDrugWareHouse = function(e,index) {
+        for(var i=0; i < scope.whdrugs.length; i++) {
+            scope.whdrugs[i].selected = false;
+        }
+        scope.whdrugs[index].selected = true;
+        if(scope.prevTarget == null) {
             e.currentTarget.className="list-group-item active";
-        } else if(isNotPrevObj(e.currentTarget)){
-            for (var i = 0, n=scope.prevTarget.length; i < n; i++) {
-                scope.prevTarget[i].className = "list-group-item";
-            };
-            scope.prevTarget.push(e.currentTarget);
-            e.currentTarget.className = "list-group-item active";
-        } else if(!isNotPrevObj(e.currentTarget)) {
-            e.currentTarget.className = "list-group-item active";
-            for (var i = 0, n=scope.prevTarget.length; i < n; i++) {
-                if(scope.prevTarget[i] == e.currentTarget) {
-                    continue;
-                } else {
-                    scope.prevTarget[i].className = "list-group-item";
-                }
-            };
+            scope.prevTarget = e.currentTarget;
+        } else {
+            scope.prevTarget.className="list-group-item";
+            e.currentTarget.className="list-group-item active";
+            scope.prevTarget = e.currentTarget;
         }
         
-        
+      //  console.log(mark.drugs);
     };
-    scope.sellDrug = function(e){
-    	console.log("inside sellDrug");
-    	if(scope.sellDrugName != null)
-    	{
-    		console.log(scope.sellDrugName);
-    		scope.sellquantity=window.prompt("You want to sell "+scope.sellDrugName+". \nEnter the amount of drugs you want to sell");
-    		if(scope.sellquantity == null){
-
-    		}
-    	}
-    };
-}]);
+    
+});
+pocket.controller('refresh_pocket',function($scope,$interval,warehouseService){
+     $scope.whdrugs=[];
+     $scope.whdrugs=warehouseService.whdrugs;
+    $interval(function(){
+     console.log("refresh",warehouseService.whdrugs);
+    },100);
+});

@@ -35,17 +35,21 @@
         
         <div class="action col-md-4">
             <h3 class="heading">Action</h3><br><br>
-            <button class="btn btn-primary col-xs-5">Buy >></button>
+            <button class="btn btn-primary col-xs-5" ng-click="buyDrug()">Buy >></button>
             <button class="btn btn-primary col-xs-5" ng-click="sellDrug()"> << Sell</button><br><br>
             <button class="btn btn-primary col-xs-5">Dump</button><br><br>
             <button class="btn btn-primary col-xs-5">Places</button>
             <button class="btn btn-primary col-xs-5">Info</button>
         </div>
         
-        <div class="pocket col-md-4">
+        <div class="pocket col-md-4" ng-controller="refresh_pocket">
             <h3 class="heading">Your Pocket </h3>
-            <ul class="list-group" ng-cloak>
-                <li ng-click="selectedDrugWareHouse($event,drugName,price)" align="center" class="list-group-item"><span class="drug-name" align="center">{{drugName}}</span> <span align="center" class="cost">{{price | currency}}</span><span class="badge">{{quantity}}</span></li>
+            <ul class="list-group">
+                <li ng-click="selectedDrugWareHouse($event,$indexs)" align="center" class="list-group-item" ng-if="start" ng-repeat="whdrug in whdrugs track by $index">
+                    <span class="drug-name" align="center">{{whdrug.name}}</span> 
+                    <span align="center" class="cost">{{whdrug.price | currency}}</span>
+                    <span class="badge">{{whdrug.qty}}</span>
+                </li>
             </ul>
         </div>
         
@@ -73,10 +77,9 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="js/app.js"></script>
-
     <script src="modules/warehouse.js"></script>
-
     <script src="modules/random.js"></script>
     <script src="modules/market.js"></script>
+    <script src="modules/action.js"></script>
 </body>
 </html>

@@ -146,8 +146,7 @@ marketMod.service('drugCityService',['randomService', function(rS){
             mark.prevTarget = e.currentTarget;
         }
         
-        console.log(mark.drugs);
-
+      //  console.log(mark.drugs);
     };
 
 }]);
