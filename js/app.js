@@ -54,15 +54,13 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
         $scope.playerDebt = play.debt;
         $scope.playerHealth = play.health;
         $scope.playerRank = play.rank;
-        $scope.playerDays = play.days;
+        $scope.playerDays = play.day;
+        $scope.pocketSize = play.pocket;
 
-        console.log($scope.playerRank);
+        console.log($scope.playerDays);
     };
 
-    //pocketSize 
-    $scope.pocketSize = play.pocket;
-
-    //watch all function
+    //watch functions
     $scope.
     $watch(function($scope){
             //console.log("function watched");
