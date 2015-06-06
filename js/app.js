@@ -2,34 +2,59 @@
 
 // Declare app level module which depends on views, and components
 
-var drugLord = angular.module('drugLord', ['ngRoute','market','wareHouse','action','player']);
+var drugLord = angular.module('drugLord', ['ngRoute']);//,'market','wareHouse','action','player']);
 
 drugLord.controller('gameController',['$scope','drugCityService','warehouseService','actionService','playerService',function($scope,dcs,whs,acs,play){
     
     $scope.newGameBtn = true;
+    $scope.quitButton = false;
     $scope.gameStarted = false;
 
     $scope.startNewGame = function() {
 
         //initialize player
         play.init();
-        setupPlayer();
+        //setupPlayer();
 
         //initialize Market
         $scope.start = dcs.initMarket();
         setupMarket();
 
         //remove new game button
-        $scope.newGameBtn = false;
+        //$scope.newGameBtn = false;
+        var startBtn = document.getElementById("start");
+        startBtn.innerHTML = "Restart";
+        startBtn.className = "btn btn-warning col-xs-5"
         $scope.gameStarted = true;
+        $scope.quitButton = true;
     };
-    
-    $scope.selectedDrug = dcs.selectedDrug;
+
+    $scope.endGame = function() {
+        var storage = window.localStorage;
+        storage.setItem('DrugLordScore',""+play.name+","+play.cash);
+
+        var injector = angular.injector();
+        injector.invoke(['$rootScope',function($rootScope){
+            $rootScope.$apply(function() {
+                $rootScope.templateUrl = null;
+            });
+        }]);
+
+        injector.get('$browser').destroy();
+        injector = null;
+        var host = document.getElementById('container');
+        var parent = host.parentNode;
+        angular.element(host).remove();
+        angular.element(parent).append(host);
+
+        console.log(storage);
+    };
 
     //drugCity Service
     var setupMarket = function() {
         $scope.drugs = dcs.drugs;
     };
+    $scope.selectedDrug = dcs.selectedDrug;
 
 
     //action service
@@ -54,16 +79,17 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
         $scope.playerDebt = play.debt;
         $scope.playerHealth = play.health;
         $scope.playerRank = play.rank;
-        $scope.playerDays = play.day;
+        $scope.playerDays = play.dayCount;
+        $scope.playerDaysLeft = play.day;
         $scope.pocketSize = play.pocket;
 
-        console.log($scope.playerDays);
+        console.log($scope.playerName);
     };
 
     //watch functions
     $scope.
     $watch(function($scope){
-            //console.log("function watched");
+            console.log("player setup function watched");
             return play.cash;
         },function(newVal,oldVal){
             if($scope.gameStarted) {

@@ -1,7 +1,7 @@
 'use strict';
-var action=angular.module('action',['wareHouse','market','player']);
+//var action=angular.module('action',['wareHouse','market','player']);
 
-action.service('actionService',['drugCityService','warehouseService','playerService',function(dcs,whs,play){
+drugLord.service('actionService',['drugCityService','warehouseService','playerService',function(dcs,whs,play){
 var acScope=this;
 acScope.sellDrug = function(){
        console.log("sell drugs");

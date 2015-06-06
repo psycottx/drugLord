@@ -1,7 +1,7 @@
 'use strict';
-var marketMod = angular.module('market',['randomMod','player']);
+//var marketMod = angular.module('market',['randomMod','player']);
 
-marketMod.service('drugCityService',['randomService','playerService', function(rS,play){
+drugLord.service('drugCityService',['randomService','playerService', function(rS,play){
     var mark = this;
     mark.initDrugs = function() {
     return [

@@ -21,7 +21,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-    <div class="container">
+    <div id="container" class="container">
         <div class="information col-md-12">
             <h4 class="heading">Information</h4><hr>
         </div>
@@ -91,16 +91,16 @@
                 </div>
                 <div class="col-sm-6">
                     <label class="col-sm-4">Days</label>
-                    <input class="form-control col-sm-8" type="text" placeholder={{playerDays}} disabled>
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerDays+"/"+playerDaysLeft}} disabled>
                 </div>
             </div>
         </div>
         
         <div class="game col-md-4">
             <h4 class="heading">Game</h4><hr>
-            <button class="btn btn-success col-xs-5" ng-show="newGameBtn" ng-click="startNewGame()">New Game</button>
+            <button id="start" class="btn btn-success col-xs-5" ng-show="newGameBtn" ng-click="startNewGame()">New Game</button>
             <div class="col-xs-2"></div>
-            <button class="btn btn-danger col-xs-5">Quit</button>
+            <button id="quit" ng-show="quitButton" class="btn btn-danger col-xs-5" ng-click="endGame()">Quit</button>
         </div>
         
     </div>
