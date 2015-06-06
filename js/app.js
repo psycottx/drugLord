@@ -7,21 +7,29 @@ var drugLord = angular.module('drugLord', ['ngRoute','market','wareHouse','actio
 drugLord.controller('gameController',['$scope','drugCityService','warehouseService','actionService','playerService',function($scope,dcs,whs,acs,play){
     
     $scope.newGameBtn = true;
+    $scope.gameStarted = false;
 
-    //drugCity Service
     $scope.startNewGame = function() {
 
+        //initialize player
         play.init();
         setupPlayer();
+
+        //initialize Market
         $scope.start = dcs.initMarket();
-        $scope.drugs = dcs.drugs;
-        console.log(dcs.drugs);
-        console.log($scope);
+        setupMarket();
+
+        //remove new game button
         $scope.newGameBtn = false;
+        $scope.gameStarted = true;
     };
-    console.log($scope);
     
     $scope.selectedDrug = dcs.selectedDrug;
+
+    //drugCity Service
+    var setupMarket = function() {
+        $scope.drugs = dcs.drugs;
+    };
 
 
     //action service
@@ -39,7 +47,7 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
 
 
     //playerService
-    function setupPlayer() {
+    var setupPlayer = function() {
         $scope.playerName = play.name;
         $scope.playerCash = play.cash;
         $scope.playerBank = play.bank;
@@ -47,8 +55,32 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
         $scope.playerHealth = play.health;
         $scope.playerRank = play.rank;
         $scope.playerDays = play.days;
-    }
+
+        console.log($scope.playerRank);
+    };
 
     //pocketSize 
     $scope.pocketSize = play.pocket;
+
+    //watch all function
+    $scope.
+    $watch(function($scope){
+            //console.log("function watched");
+            return play.cash;
+        },function(newVal,oldVal){
+            if($scope.gameStarted) {
+                setupPlayer();
+                console.log("called setupPlayer");
+            }
+    });
+    $scope.$watch(function($scope){
+            //console.log("function watched");
+            return setupMarket;
+        },function(newVal){
+            if($scope.gameStarted) {
+                newVal();
+                console.log("called setupMarket");
+            }
+    });
+
 }]);
