@@ -21,29 +21,31 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-    <div class="container">
+    <div id="container" class="container">
         <div class="information col-md-12">
-            <h4 class="heading">Information</h4>
+            <h4 class="heading">Information</h4><hr>
         </div>
         
         <div class="market col-md-4">
-            <h4 class="heading">Market</h4><br>
+            <h4 class="heading">Market</h4><hr>
             <ul class="list-group" ng-cloak>
                 <li ng-click="selectedDrug($event,$index)" align="center" class="list-group-item" ng-show="start" ng-repeat="drug in drugs track by $index"><span class="drug-name">{{drug.name}}</span> <span align="center" >{{drug.price | currency}}</span><span class="badge">{{drug.qty}}</span></li>
             </ul>
         </div>
         
         <div class="action col-md-4">
-            <h4 class="heading">Action</h4><br><br>
+            <h4 class="heading">Action</h4><hr>
             <button class="btn btn-primary col-xs-5" ng-click="buyDrug()">Buy >></button>
+            <div class="col-xs-2"></div>
             <button class="btn btn-primary col-xs-5" ng-click="sellDrug()"> << Sell</button><br><br>
-            <button class="btn btn-primary col-xs-5" ng-click="dumpDrug()">Dump</button><br><br>
-            <button class="btn btn-primary col-xs-5">Places</button>
+            <button class="btn btn-primary col-xs-5" ng-click="dumpDrug()">Dump</button>
+            <div class="col-xs-2"></div>
+            <button class="btn btn-primary col-xs-5">Places</button><br><br>
             <button class="btn btn-primary col-xs-5">Info</button>
         </div>
         
         <div class="pocket col-md-4">
-            <h4 class="heading">Your Pocket {{pocketSize}}</h4>
+            <h4 class="heading">Pocket Size ({{pocketSize}})</h4><hr>
             <ul class="list-group">
                 <li ng-click="selectedDrugWareHouse($event,$index)" align="center" class="list-group-item" ng-if="start" ng-repeat="whdrug in whdrugs track by $index">
                     <span class="drug-name" align="center">{{whdrug.name}}</span> 
@@ -54,19 +56,20 @@
         </div>
         
         <div class="tomorrow col-md-4">
-            <h4 class="heading">Tomorrow</h4><br><br>
-            <button class="btn btn-primary">Stay Here</button>
-            <button class="btn btn-primary">Fly Away</button>
+            <h4 class="heading">Tomorrow</h4><hr>
+            <button class="btn btn-primary col-xs-5">Stay Here</button>
+            <div class="col-xs-2"></div>
+            <button class="btn btn-primary col-xs-5">Fly Away</button>
         </div>
         
         <div class="status col-md-4">
-            <h4 class="heading">Status</h4>
+            <h4 class="heading">Status</h4><hr>
             <div class="form-group">
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                     <label class="col-sm-4">Name</label>
                     <input class="form-control col-sm-8" type="text" placeholder={{playerName}} disabled>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-6">
                     <label class="col-sm-4">Cash</label>
                <input class="form-control col-sm-8" type="text" placeholder={{playerCash|currency}} disabled>
                 </div>
@@ -88,15 +91,20 @@
                 </div>
                 <div class="col-sm-6">
                     <label class="col-sm-4">Days</label>
+
                    <input class="form-control col-sm-8" type="text" placeholder={{playerDays}} disabled> 
+
+                    <input class="form-control col-sm-8" type="text" placeholder={{playerDays+"/"+playerDaysLeft}} disabled>
+
                 </div>
             </div>
         </div>
         
         <div class="game col-md-4">
-            <h4 class="heading">Game</h4>
-            <button class="btn btn-success" ng-show="newGameBtn" ng-click="startNewGame()">New Game</button>
-            <button class="btn btn-danger">Quit</button>
+            <h4 class="heading">Game</h4><hr>
+            <button id="start" class="btn btn-success col-xs-5" ng-show="newGameBtn" ng-click="startNewGame()">New Game</button>
+            <div class="col-xs-2"></div>
+            <button id="quit" ng-show="quitButton" class="btn btn-danger col-xs-5" ng-click="endGame()">Quit</button>
         </div>
         
     </div>

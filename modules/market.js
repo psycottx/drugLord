@@ -1,125 +1,125 @@
 'use strict';
-var marketMod = angular.module('market',['randomMod']);
+//var marketMod = angular.module('market',['randomMod','player']);
 
-marketMod.service('drugCityService',['randomService','$log', function(rS,$log){
+drugLord.service('drugCityService',['randomService','playerService', function(rS,play){
     var mark = this;
     mark.initDrugs = function() {
     return [
             {
                 name:"Cocaine",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(10000)),
                 selected : false
             },
             
             {
                 name:"Crack",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(10000)),
                 selected : false
             },
             
             {
                 name:"Ecstacy",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(10000)),
                 selected : false
             },
             
             {
                 name:"Hashish",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(10000)),
                 selected : false
             },
             
             {
                 name:"Heroin",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(10000)),
                 selected : false
             },
             
             {
                 name:"Ice",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"KAT",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"LSD",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"MDA",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"Morphine",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"Mushrooms",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"Opium",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"PCP",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"Peyote",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"Pot",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"Special K",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             },
             
             {
                 name:"Speed",
-                qty : Math.round(rS.randomPrice(10)),
+                qty : Math.round(rS.randomPrice(play.pocket)),
                 price: Math.round(rS.randomPrice(1000)),
                 selected : false
             }
@@ -148,31 +148,46 @@ marketMod.service('drugCityService',['randomService','$log', function(rS,$log){
             }
             mark.indexes.push(j);
         }
-        mark.indexes.sort();
         for(var i=0; i < mark.size; i++) {
             mark.drugs.push(mark.drugs1[mark.indexes[i]]);
         }
-        console.log(mark.indexes);
+        mark.drugs.sort(compare);
+        function compare(a,b){
+            if(a.name > b.name) {
+                return 1
+            } else {
+                return -1;
+            }
+        }
+        console.log(mark.drugs);
         return true;
     };
     mark.prevTarget = null;
     mark.selectedDrug = function(e,index) {
+        //first mark all selected value to false
         for(var i=0; i < mark.drugs.length; i++) {
             mark.drugs[i].selected = false;
         }
+
+        //mark the selected index drug as true
         mark.drugs[index].selected = true;
+
+        //if item is selected for the first time
         if(mark.prevTarget == null) {
             e.currentTarget.className="list-group-item active";
             mark.prevTarget = e.currentTarget;
-        } else if(mark.prevTarget == e.currentTarget) {
+        } 
+        // if the same item is selected, deselect it and mark selected as false
+        else if(mark.prevTarget == e.currentTarget) {
             if(e.currentTarget.className == "list-group-item active") {
-                 e.currentTarget.className = "list-group-item";
+                e.currentTarget.className = "list-group-item";
                 mark.drugs[index].selected = false;
             } else {
-                 e.currentTarget.className = "list-group-item active";
+                e.currentTarget.className = "list-group-item active";
                 mark.drugs[index].selected = true;
             }
         }
+        //change previous item class and update current one
         else {
             mark.prevTarget.className="list-group-item";
             e.currentTarget.className="list-group-item active";

@@ -2,6 +2,7 @@
 var action=angular.module('action',['wareHouse','market','player']);
 
 action.service('actionService',['drugCityService','warehouseService','playerService',function(dcs,whs,pls){
+
 var acScope=this;
 acScope.poketSize=pls.pockets;
 
@@ -28,12 +29,22 @@ acScope.sellDrug = function(){
                             sellCash= pls.cash + (temp * sellCash);
                             pls.cashUpdate(sellCash);
                        }
-                       else if(temp < acScope.whdrugs[i].qty)
+                       /*else if(temp < acScope.whdrugs[i].qty)
                        {
                             acScope.whdrugs[i].qty=acScope.whdrugs[i].qty - temp;
                             acScope.drugs[j].qty= tqty + temp ;
                             sellCash= pls.cash + (temp * sellCash);
                             pls.cashUpdate(sellCash);
+
+                          pls.cash += temp*acScope.whdrugs[i].price;
+                          acScope.whdrugs.splice(i,1);
+                          acScope.drugs[j].qty= tqty + temp ;
+                       }*/
+                       else if(temp < acScope.whdrugs[i].qty)
+                       {
+                          pls.cash += temp*acScope.whdrugs[i].price;
+                          acScope.whdrugs[i].qty=acScope.whdrugs[i].qty - temp;
+                          acScope.drugs[j].qty= tqty + temp ;
                        }
                        else if(temp > acScope.whdrugs[i].qty)
                        {
@@ -73,13 +84,27 @@ for(var i=0;i < acScope.drugs.length;i++)
                        }
                   }
                   if(!flag)
-                    {
+                  {
+                    if(play.cash >= acScope.drugs[i].price * temp) {
                       pushIntoPocket(i,temp);
-                    } 
+                      play.cash -= acScope.drugs[i].price * temp;
+                      console.log(play.cash);
+                    }
+                    else {
+                      window.alert("You're short of money.");
+                    }
+                  }
                }
                else
                {
-                   pushIntoPocket(i,temp);
+                   if(play.cash >= acScope.drugs[i].price * temp) {
+                      pushIntoPocket(i,temp);
+                      play.cash -= acScope.drugs[i].price * temp;
+                      console.log(play.cash);
+                    }
+                    else {
+                      window.alert("You're short of money.");
+                    }
                }
             }
             else if((temp > acScope.drugs[i].qty) && temp != null)

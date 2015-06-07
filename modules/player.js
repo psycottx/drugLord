@@ -1,43 +1,51 @@
 'use strict';
 
-var player = angular.module('player',[]);
+//var player = angular.module('player',[]);
 
-player.service('playerService',[function() {
+drugLord.service('playerService',[function() {
 	var scope = this;
-	var index = 0;
-	scope.name = '';
-	scope.cash = 0;
-	scope.bank = 0;
-	scope.debt = 1000;
-	scope.health = 100;
-
-	scope.ranks = ['Wannabe','Small Time Operator','Dealer','Big Time Dealer','Distributor'];
-	scope.days = [30,35,40,45,50];
-	scope.pockets = [10,25,100,600,2000];
-
-	scope.rank = scope.ranks[index];
-	scope.day = scope.days[index];
-	scope.pocket = scope.pockets[index];
-	scope.cashUpdate=function(value){
-         console.log("inside cashUpdate");
-		scope.cash =value;
-		console.log(scope.cash);
-	};
 
 	scope.init = function() {
 		scope.name = window.prompt('Please enter your name.');
+		if(scope.name.length < 1) {
+			scope.name = "GuestPlayer";
+		}
+
+		console.log(scope.name);
+
+		scope.index = 0;
+		scope.cash = 1990;
+		scope.bank = 0;
+		scope.debt = 1000;
+		scope.health = 100;
+		scope.dayCount = 0;
+
+		scope.ranks = ['Wannabe','Small Time Operator','Dealer','Big Time Dealer','Distributor'];
+		scope.days = [30,35,40,45,50];
+		scope.pockets = [10,25,100,600,2000];
+
+		scope.rank = scope.ranks[scope.index];
+		scope.day = scope.days[scope.index];
+		scope.pocket = scope.pockets[scope.index];
+
+		if(scope.cash < 40000) {
+			setUpStuff(0);
+		} else if (scope.cash < 100000) {
+			setUpStuff(1);
+		} else if (scope.cash < 500000) {
+			setUpStuff(2);
+		} else if (scope.cash < 1000000) {
+			setUpStuff(3);
+		} else if (scope.cash < 2000000) {
+			setUpStuff(4);
+		}
+
+		function setUpStuff(ind) {
+			scope.rank = scope.ranks[ind];
+			scope.day = scope.days[ind];
+			scope.pocket = scope.pockets[ind];
+		}
 	};
 
-	if(scope.cash < 40000) {
-		index = 0;
-	} else if (scope.cash < 100000) {
-		index =1;
-	} else if (scope.cash < 500000) {
-		index = 2;
-	} else if (scope.cash < 1000000) {
-		index = 3;
-	} else if (scope.cash < 2000000) {
-		index = 4;
-	}
 
 }]);

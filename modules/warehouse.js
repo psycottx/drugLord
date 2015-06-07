@@ -1,6 +1,6 @@
 'use strict';
-var pocket=angular.module('wareHouse',[]);
-pocket.service('warehouseService',function(){
+//var pocket=angular.module('wareHouse',['player']);
+drugLord.service('warehouseService',['playerService',function(play){
 	var scope = this;
     scope.whdrugs = [];
 	scope.wareHouseSize=10;
@@ -32,6 +32,6 @@ pocket.service('warehouseService',function(){
     };
     
 
-});
+}]);
 
 
