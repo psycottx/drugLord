@@ -6,7 +6,7 @@ player.service('playerService',[function() {
 	var scope = this;
 	var index = 0;
 	scope.name = '';
-	scope.cash = 1990;
+	scope.cash = 0;
 	scope.bank = 0;
 	scope.debt = 1000;
 	scope.health = 100;
@@ -16,8 +16,13 @@ player.service('playerService',[function() {
 	scope.pockets = [10,25,100,600,2000];
 
 	scope.rank = scope.ranks[index];
-	scope.days = scope.days[index];
+	scope.day = scope.days[index];
 	scope.pocket = scope.pockets[index];
+	scope.cashUpdate=function(value){
+         console.log("inside cashUpdate");
+		scope.cash =value;
+		console.log(scope.cash);
+	};
 
 	scope.init = function() {
 		scope.name = window.prompt('Please enter your name.');

@@ -1,8 +1,10 @@
 'use strict';
-var action=angular.module('action',['wareHouse','market']);
+var action=angular.module('action',['wareHouse','market','player']);
 
-action.service('actionService',['drugCityService','warehouseService',function(dcs,whs){
+action.service('actionService',['drugCityService','warehouseService','playerService',function(dcs,whs,pls){
 var acScope=this;
+acScope.poketSize=pls.pockets;
+
 acScope.sellDrug = function(){
        console.log("sell drugs");
        acScope.drugs=dcs.drugs;
@@ -16,17 +18,22 @@ acScope.sellDrug = function(){
                    if(acScope.whdrugs[i].name == acScope.drugs[j].name)
                    {
                        var temp=null,
-                       tqty=acScope.drugs[j].qty;
+                       tqty=acScope.drugs[j].qty,
+                       sellCash=acScope.whdrugs[i].price;
                        temp=parseInt(window.prompt("You want to sell "+acScope.whdrugs[i].name+ "in the price of "+acScope.whdrugs[i].price+" ."+" \nYou Have availabe quantity is "+acScope.whdrugs[i].qty+" Enter quantity you want to sell"));
                        if(temp == acScope.whdrugs[i].qty)
                        {
                             acScope.whdrugs.splice(i,1);
                             acScope.drugs[j].qty= tqty + temp ;
+                            sellCash= pls.cash + (temp * sellCash);
+                            pls.cashUpdate(sellCash);
                        }
                        else if(temp < acScope.whdrugs[i].qty)
                        {
                             acScope.whdrugs[i].qty=acScope.whdrugs[i].qty - temp;
                             acScope.drugs[j].qty= tqty + temp ;
+                            sellCash= pls.cash + (temp * sellCash);
+                            pls.cashUpdate(sellCash);
                        }
                        else if(temp > acScope.whdrugs[i].qty)
                        {
@@ -41,7 +48,7 @@ acScope.sellDrug = function(){
 };
 
 acScope.buyDrug = function(){
-  console.log("inside buy");
+console.log("inside buy");
 acScope.drugs=dcs.drugs;
 acScope.whdrugs=whs.whdrugs;
 for(var i=0;i < acScope.drugs.length;i++)

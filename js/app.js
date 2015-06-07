@@ -12,14 +12,16 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
     $scope.startNewGame = function() {
 
         play.init();
+        play.cashUpdate(1990);
         setupPlayer();
         $scope.start = dcs.initMarket();
         $scope.drugs = dcs.drugs;
-        console.log(dcs.drugs);
-        console.log($scope);
+        //console.log(dcs.drugs);
+        //console.log($scope);
+        // console.log(play.cash);
         $scope.newGameBtn = false;
     };
-    console.log($scope);
+    //console.log($scope);
     
     $scope.selectedDrug = dcs.selectedDrug;
 
@@ -39,15 +41,19 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
 
 
     //playerService
-    function setupPlayer() {
-        $scope.playerName = play.name;
-        $scope.playerCash = play.cash;
-        $scope.playerBank = play.bank;
-        $scope.playerDebt = play.debt;
-        $scope.playerHealth = play.health;
-        $scope.playerRank = play.rank;
-        $scope.playerDays = play.days;
-    }
+        function setupPlayer()
+        {
+          $scope.playerName = play.name;
+          $scope.playerCash =  play.cash; 
+          $scope.playerBank =  play.bank;
+          $scope.playerDebt =  play.debt;
+          $scope.playerHealth = play.health;
+          $scope.playerRank = play.rank;
+          $scope.playerDays = play.day;
+        }
+
+        //$scope.playerCash = play.cash;
+        
 
     //pocketSize 
     $scope.pocketSize = play.pocket;
