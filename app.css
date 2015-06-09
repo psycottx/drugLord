@@ -102,3 +102,36 @@ html, body {
 .heading {
     padding: 0px;
 }
+#list-item{
+  max-height: 100px;
+  overflow-y:scroll;
+}
+#mymodal_content{
+  left:  500px;
+  display:  inline-block;
+}
+
+#inPocket
+{
+  background: blue;
+  height: 275px;
+  border: 1px black solid;
+}
+#vaultAction
+{
+  background: blue;
+  height: 275px;
+  border: 1px black solid;
+}
+#inVault
+{
+  background: blue;
+  height: 275px;
+  border: 1px black solid;
+}
+#vault_model
+{
+  height:600px;
+  width:700px;
+  margin-left: -12px;
+}

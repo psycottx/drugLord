@@ -1,10 +1,10 @@
 'use strict';
-var action=angular.module('action',['wareHouse','market','player']);
+//var action=angular.module('action',['drugLord']);
 
-action.service('actionService',['drugCityService','warehouseService','playerService',function(dcs,whs,pls){
+drugLord.service('actionService',['drugCityService','warehouseService','playerService',function(dcs,whs,play){
 
 var acScope=this;
-acScope.poketSize=pls.pockets;
+acScope.poketSize=play.pockets;
 
 acScope.sellDrug = function(){
        console.log("sell drugs");
@@ -12,22 +12,27 @@ acScope.sellDrug = function(){
        acScope.whdrugs=whs.whdrugs; 
        for(var i=0; i < acScope.whdrugs.length; i++ )
        {
+            console.log("1");
             if(acScope.whdrugs[i].selected == true)
             {
+              console.log("2");
               for(var j=0; j < acScope.drugs.length; j++)
               {
+                   console.log("3");
+                   //var tempname=acScope.whdrugs[i].name;
                    if(acScope.whdrugs[i].name == acScope.drugs[j].name)
                    {
+                       console.log("4");
                        var temp=null,
                        tqty=acScope.drugs[j].qty,
                        sellCash=acScope.whdrugs[i].price;
                        temp=parseInt(window.prompt("You want to sell "+acScope.whdrugs[i].name+ "in the price of "+acScope.whdrugs[i].price+" ."+" \nYou Have availabe quantity is "+acScope.whdrugs[i].qty+" Enter quantity you want to sell"));
                        if(temp == acScope.whdrugs[i].qty)
                        {
+                            console.log("4.1");
                             acScope.whdrugs.splice(i,1);
                             acScope.drugs[j].qty= tqty + temp ;
-                            sellCash= pls.cash + (temp * sellCash);
-                            pls.cashUpdate(sellCash);
+                            play.cash= play.cash + (temp * sellCash);
                        }
                        /*else if(temp < acScope.whdrugs[i].qty)
                        {
@@ -42,7 +47,8 @@ acScope.sellDrug = function(){
                        }*/
                        else if(temp < acScope.whdrugs[i].qty)
                        {
-                          pls.cash += temp*acScope.whdrugs[i].price;
+                          console.log("4.2");
+                          play.cash += temp*acScope.whdrugs[i].price;
                           acScope.whdrugs[i].qty=acScope.whdrugs[i].qty - temp;
                           acScope.drugs[j].qty= tqty + temp ;
                        }
@@ -85,12 +91,14 @@ for(var i=0;i < acScope.drugs.length;i++)
                   }
                   if(!flag)
                   {
-                    if(play.cash >= acScope.drugs[i].price * temp) {
+                    if(play.cash >= acScope.drugs[i].price * temp)
+                    {
                       pushIntoPocket(i,temp);
                       play.cash -= acScope.drugs[i].price * temp;
                       console.log(play.cash);
                     }
-                    else {
+                    else 
+                    {
                       window.alert("You're short of money.");
                     }
                   }

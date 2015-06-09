@@ -2,9 +2,9 @@
 
 // Declare app level module which depends on views, and components
 
-var drugLord = angular.module('drugLord', ['ngRoute']);//,'market','wareHouse','action','player']);
+var drugLord = angular.module('drugLord', ['ngRoute']);
 
-drugLord.controller('gameController',['$scope','drugCityService','warehouseService','actionService','playerService',function($scope,dcs,whs,acs,play){
+drugLord.controller('gameController',['$scope','drugCityService','warehouseService','actionService','playerService','placeService',function($scope,dcs,whs,acs,play,place){
     
     $scope.newGameBtn = true;
     $scope.quitButton = false;
@@ -29,6 +29,44 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
         startBtn.className = "btn btn-warning col-xs-5"
         $scope.gameStarted = true;
         $scope.quitButton = true;
+        $scope.storInventory=place.initInventory;
+        console.log( $scope.storInventory);
+    };
+    $scope.bankOperation = function(){
+        var op=document.getElementsByName("operation");
+            if(op[0].checked)
+            {
+               var cash=parseInt(document.getElementById("ammount").value);
+               if((cash <= play.cash) && (cash >= 0))
+               {
+                   play.cash-=cash;
+                   play.bank+=cash;
+               }
+               else
+               {
+                  window.alert("enter valid ammount");
+               }    
+            }
+            else if(op[1].checked)
+            {
+                var cash=parseInt(document.getElementById("ammount").value);
+                 if((cash <= play.bank) && (cash >= 0))
+               {
+                   play.cash+=cash;
+                   play.bank-=cash;
+               }
+               else
+               {
+                  window.alert("enter valid ammount");
+               }    
+            }
+    };
+    $scope.payLone=function(){
+       if(play.cash >= play.debt)
+       {
+        play.cash-=play.debt;
+        play.debt-=play.debt;
+       }
     };
 
     $scope.endGame = function() {
@@ -92,8 +130,13 @@ drugLord.controller('gameController',['$scope','drugCityService','warehouseServi
         $scope.playerDaysLeft = play.day;
         $scope.pocketSize = play.pocket;
 
-        console.log($scope.playerName);
     };
+    //place service
+    $scope.selectedSellInvItem=place.selectInvItem;
+    $scope.buyArray=place.buyItems;
+    $scope.buyInventoryItem=place.buyItem;
+    $scope.sellBuyInvItem=place.sellItem;
+    $scope.selectedBuyInvItems=place.selectedBuyInvItems;
 
     //watch functions
     $scope.$watch(function($scope){
